@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus Agent Store — магазин AI-агентов</title>
+<meta name="description" content="Официальный магазин AI-агентов экосистемы Nexus. Вы приобретаете не файл, а лицензию на интеллектуальный модуль, работающий только внутри Nexus.">
+<style>
+  :root{
+    --ink:#eef0ff; --soft:#b7bce0; --faint:#7f84ad; --line:rgba(255,255,255,.1);
+    --violet:#a86bff; --indigo:#7f87ff; --cyan:#2ec8de;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1200px 700px at 50% -8%, rgba(130,110,255,.22), transparent 60%),
+      radial-gradient(900px 600px at 90% 20%, rgba(46,200,222,.10), transparent 55%),
+      #080a16;
+    min-height:100vh; line-height:1.5;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px}
+  header{padding:26px 0; display:flex; align-items:center; gap:12px}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:800; font-size:1.15rem; letter-spacing:.4px}
+  .logo{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--indigo),var(--violet));box-shadow:0 0 22px -6px var(--violet)}
+  .brand small{display:block;font-weight:600;font-size:.7rem;color:var(--faint);letter-spacing:.12em;text-transform:uppercase}
+  .nav-pill{margin-left:auto;font-size:.82rem;color:var(--soft);border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.03)}
+
+  .hero{padding:44px 0 24px; text-align:center}
+  .hero h1{margin:0 0 12px; font-size:clamp(2rem,5vw,3.2rem); font-weight:850; letter-spacing:.4px;
+    background:linear-gradient(92deg,#cdd6ff,var(--indigo) 45%,var(--violet));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{margin:0 auto; max-width:660px; font-size:1.06rem; color:var(--soft)}
+  .hero .tag{display:inline-block;margin-bottom:16px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--violet);border:1px solid color-mix(in srgb,var(--violet) 40%,transparent);
+    padding:6px 14px;border-radius:999px;background:color-mix(in srgb,var(--violet) 12%,transparent)}
+
+  section{padding:26px 0}
+  .h2{font-size:1.5rem;font-weight:800;margin:0 0 4px}
+  .sub{color:var(--faint);margin:0 0 20px}
+
+  /* featured */
+  .featured{
+    display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;
+    padding:26px;border-radius:22px;margin-bottom:26px;
+    border:1px solid color-mix(in srgb,var(--violet) 45%,transparent);
+    background:
+      radial-gradient(70% 130% at 10% 0%, color-mix(in srgb,var(--violet) 16%,transparent), transparent 60%),
+      linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));
+    box-shadow:0 0 60px -26px var(--violet)}
+  .orb{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:2.6rem;
+    background:radial-gradient(circle at 50% 34%, color-mix(in srgb,var(--violet) 42%,transparent), color-mix(in srgb,var(--violet) 8%,transparent));
+    border:1px solid color-mix(in srgb,var(--violet) 50%,transparent);box-shadow:0 0 34px -6px var(--violet)}
+  .featured h3{margin:0;font-size:1.9rem;font-weight:850;letter-spacing:1px}
+  .featured .role{color:color-mix(in srgb,var(--violet) 55%,#cfd3f0);margin:2px 0 10px;font-weight:600}
+  .featured p{margin:0 0 14px;color:var(--soft)}
+  .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .price{font-weight:800;font-size:1.2rem}
+  .btn{cursor:pointer;border:none;border-radius:12px;padding:12px 22px;font-weight:750;font-size:.95rem;color:#0a0f1e;
+    background:linear-gradient(120deg,#c9b4ff,var(--violet));box-shadow:0 12px 28px -12px var(--violet);text-decoration:none;display:inline-block}
+  .btn:hover{filter:brightness(1.08)}
+  .btn.ghost{background:rgba(255,255,255,.05);color:var(--soft);border:1px solid var(--line);box-shadow:none}
+
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .card{padding:18px;border-radius:18px;border:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));display:flex;flex-direction:column;gap:10px}
+  .card .top{display:flex;align-items:center;gap:12px}
+  .card .ci{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;
+    background:radial-gradient(circle at 50% 34%, color-mix(in srgb,var(--acc) 38%,transparent), color-mix(in srgb,var(--acc) 8%,transparent));
+    border:1px solid color-mix(in srgb,var(--acc) 45%,transparent)}
+  .card h4{margin:0;font-size:1.06rem;font-weight:800}
+  .card .role{margin:1px 0 0;font-size:.82rem;color:color-mix(in srgb,var(--acc) 55%,#cfd3f0)}
+  .card p{margin:0;font-size:.88rem;color:var(--soft);flex:1}
+  .card .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+  .card .p2{font-weight:750}
+  .buy{cursor:pointer;border:none;border-radius:10px;padding:9px 16px;font-weight:700;font-size:.84rem;color:#0a0f1e;
+    background:linear-gradient(120deg,color-mix(in srgb,var(--acc) 85%,#fff),var(--acc))}
+
+  /* how */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .step{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+  .step .n{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:800;
+    background:linear-gradient(135deg,var(--indigo),var(--violet));margin-bottom:10px}
+  .step h5{margin:0 0 4px;font-size:1rem}
+  .step p{margin:0;font-size:.86rem;color:var(--soft)}
+
+  .note{margin-top:22px;padding:16px 18px;border-radius:14px;border:1px solid color-mix(in srgb,var(--cyan) 30%,transparent);
+    background:color-mix(in srgb,var(--cyan) 8%,transparent);color:var(--soft);font-size:.9rem}
+  .note b{color:var(--ink)}
+
+  footer{padding:34px 0 44px;color:var(--faint);font-size:.84rem;text-align:center;border-top:1px solid var(--line);margin-top:24px}
+  @media(max-width:640px){.featured{grid-template-columns:1fr;text-align:center;justify-items:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="logo">✦</span><span>Nexus Agent Store<small>экосистема Spark · Nexus</small></span></div>
+    <span class="nav-pill">Войдите через Nexus, чтобы видеть свои покупки</span>
+  </header>
+
+  <div class="hero">
+    <span class="tag">Магазин AI-агентов</span>
+    <h1>Расширяйте Nexus интеллектом</h1>
+    <p>Вы приобретаете не файл, а лицензию на интеллектуальный модуль, разработанный исключительно для экосистемы Nexus. Агент работает только внутри вашего Nexus, привязан к вашему аккаунту и не запускается как обычная программа.</p>
+  </div>
+
+  <section>
+    <div class="featured">
+      <div class="orb">🧠</div>
+      <div>
+        <h3>STARK</h3>
+        <div class="role">Первый интеллектуальный агент Nexus</div>
+        <p>Stark активирует базовый интеллект системы Spark, взаимодействует с пользователем и становится основой для подключения следующих AI-агентов. Всё выполнение — локально и приватно; лицензия подтверждается вашим аккаунтом Nexus.</p>
+        <div class="row">
+          <span class="price">1 490 ₽</span>
+          <a class="btn" href="#how">Купить Stark</a>
+          <span style="color:var(--faint);font-size:.85rem">Лицензия на аккаунт · 2 устройства</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Каталог агентов</h2>
+    <p class="sub">Каждый агент — отдельный интеллектуальный модуль для Nexus.</p>
+    <div class="grid">
+      <div class="card" style="--acc:#2ec8de"><div class="top"><span class="ci">📚</span><div><h4>Аналитик документов</h4><div class="role">Ответы по вашим документам</div></div></div><p>Читает ваши файлы и отвечает по их содержимому со ссылками на источники. Всё чтение — локально.</p><div class="foot"><span class="p2">1 990 ₽</span><button class="buy">Купить</button></div></div>
+      <div class="card" style="--acc:#50dc96"><div class="top"><span class="ci">🔎</span><div><h4>Нейропоиск</h4><div class="role">Смысловой поиск по файлам</div></div></div><p>Находит нужное по смыслу, а не только по совпадению слов — по всем разрешённым папкам.</p><div class="foot"><span class="p2">1 490 ₽</span><button class="buy">Купить</button></div></div>
+      <div class="card" style="--acc:#ffb324"><div class="top"><span class="ci">🛡️</span><div><h4>Хранитель</h4><div class="role">Присмотр за безопасностью</div></div></div><p>Замечает новые программы и подключения устройств, ведёт защищённый журнал. Локально, без слежки.</p><div class="foot"><span class="p2">990 ₽</span><button class="buy">Купить</button></div></div>
+      <div class="card" style="--acc:#6f76ff"><div class="top"><span class="ci">🗓️</span><div><h4>Планировщик</h4><div class="role">Сводки и расписание</div></div></div><p>Готовит сводку «что изменилось» к нужному времени и следит за расписанием.</p><div class="foot"><span class="p2">790 ₽</span><button class="buy">Купить</button></div></div>
+      <div class="card" style="--acc:#c15cff"><div class="top"><span class="ci">🗂️</span><div><h4>Мастер файлов</h4><div class="role">Порядок в файлах</div></div></div><p>Открывает, переименовывает, наводит порядок в файлах по вашей команде — с подтверждением.</p><div class="foot"><span class="p2">990 ₽</span><button class="buy">Купить</button></div></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2 class="h2">Как это работает</h2>
+    <p class="sub">Покупка и активация разделены. Вы покупаете лицензию — Nexus сам получает защищённый модуль.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h5>Покупка</h5><p>Вы оплачиваете лицензию. Агент привязывается к вашему аккаунту Nexus, а не к скачанному файлу.</p></div>
+      <div class="step"><div class="n">2</div><h5>Появляется в Nexus</h5><p>В разделе «Мои агенты» статус меняется: приобретён → доступен для подключения.</p></div>
+      <div class="step"><div class="n">3</div><h5>Подключение</h5><p>Nexus сам получает защищённый пакет из облака, проверяет лицензию и подпись — без ручной установки.</p></div>
+      <div class="step"><div class="n">4</div><h5>Активация</h5><p>Вы запускаете агента в Nexus. Копия файла на другом ПК не заработает без вашей лицензии.</p></div>
+    </div>
+    <div class="note"><b>Почему это безопасно:</b> вы покупаете право использовать агента внутри Nexus, а не архив с кодом. Лицензия контролируется сервером, подпись подтверждает происхождение, а ценная логика не покидает инфраструктуру Nexus.</div>
+  </section>
+
+  <footer>
+    Nexus Agent Store · экосистема Spark · Nexus. Оформление покупок через аккаунт Nexus скоро откроется — эта страница показывает витрину экосистемы.
+  </footer>
+</div>
+</body>
+</html>
